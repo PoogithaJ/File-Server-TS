@@ -1,0 +1,367 @@
+swagger: '2.0'
+info:
+  description: File Server API
+  version: 1.0.0
+  title: File Server API
+host: localhost:5000
+basePath: /
+schemes:
+  - http
+paths:
+  /Files/upload:
+    post:
+      tags:
+        - Files
+      summary: Upload a file
+      description: Uploads a file to the server.
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: query
+          description: ID of the file
+          required: true
+          type: string
+          
+        - name: file
+          in: formData
+          description: The file to upload
+          required: false
+          type: file
+
+      responses:
+        200:
+          description: Successfully uploaded
+          schema:
+            type: string
+            example: File uploaded successfully
+        400:
+          description: No file uploaded
+          schema:
+            type: string
+            example: No file uploaded
+        500:
+          description: Error in file upload
+          schema:
+            type: string
+            example: File upload failed
+
+  /Files/getById:
+    get:
+      tags: 
+        - Files
+      summary: Find a file by Id
+      description: Returns a single file
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: query
+          description: ID of the file to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: string
+            example: File found
+        400:
+          description: File not found
+          schema:
+            type: string
+            example: File not found
+
+  /Files/delById:
+    delete:
+      tags: 
+        - Files
+      summary: Delete a file by Id
+      description: Delete a single file
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: query
+          description: ID of the file to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: string
+            example: File deleted
+        400:
+          description: File not found
+          schema:
+            type: string
+            example: File not found
+        500:
+          description: File not deleted
+          schema:
+            type: string
+            example: File not deleted
+
+  /Files/updateById:
+    put:
+      tags: 
+        - Files
+      summary: Update a file by Id
+      description: Update a single file
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: query
+          description: ID of the file to update
+          required: true
+          schema:
+            type: string
+
+        - name: Name
+          in: query
+          description: New name of the file
+          required: true
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: string
+            example: File updated successfully
+        400:
+          description: File not found
+          schema:
+            type: string
+            example: File not found
+        500:
+          description: File not updated
+          schema:
+            type: string
+            example: File not updated
+
+  /Files/searchByTag:
+    get:
+      tags: 
+        - Files
+      summary: Find files by tags
+      description: Returns multiple file
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: tag
+          in: query
+          description: tag of the files to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: string
+            example: File found
+        400:
+          description: No files with given tag
+          schema:
+            type: string
+            example: No files with given tag
+
+        
+
+
+ 
+
+  # /upload:
+  #   post:
+  #     tags:
+  #       - Upload
+  #     summary: Upload a file
+  #     description: Uploads a file to the server.
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: fileId
+  #         in: query
+  #         description: ID of the file
+  #         required: true
+  #         type: string
+          
+  #       - name: file
+  #         in: formData
+  #         description: The file to upload
+  #         required: false
+  #         type: file
+
+  #     responses:
+  #       200:
+  #         description: Successfully uploaded
+  #         schema:
+  #           type: string
+  #           example: File uploaded successfully
+  #       400:
+  #         description: No file uploaded
+  #         schema:
+  #           type: string
+  #           example: No file uploaded
+  #       500:
+  #         description: Error in file upload
+  #         schema:
+  #           type: string
+  #           example: File upload failed
+
+  # /getById:
+  #   get:
+  #     tags: 
+  #       - Get
+  #     summary: Find a file by Id
+  #     description: Returns a single file
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: fileId
+  #         in: query
+  #         description: ID of the file to return
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       200:
+  #         description: successful operation
+  #         schema:
+  #           type: string
+  #           example: File found
+  #       400:
+  #         description: File not found
+  #         schema:
+  #           type: string
+  #           example: File not found
+
+  # /delById:
+  #   delete:
+  #     tags: 
+  #       - Delete
+  #     summary: Delete a file by Id
+  #     description: Delete a single file
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: fileId
+  #         in: query
+  #         description: ID of the file to delete
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       200:
+  #         description: successful operation
+  #         schema:
+  #           type: string
+  #           example: File deleted
+  #       400:
+  #         description: File not found
+  #         schema:
+  #           type: string
+  #           example: File not found
+  #       500:
+  #         description: File not deleted
+  #         schema:
+  #           type: string
+  #           example: File not deleted
+
+  # /updateById:
+  #   put:
+  #     tags: 
+  #       - Put
+  #     summary: Update a file by Id
+  #     description: Update a single file
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: fileId
+  #         in: query
+  #         description: ID of the file to update
+  #         required: true
+  #         schema:
+  #           type: string
+
+  #       - name: Name
+  #         in: query
+  #         description: New name of the file
+  #         required: true
+  #         schema:
+  #           type: string
+
+  #     responses:
+  #       200:
+  #         description: successful operation
+  #         schema:
+  #           type: string
+  #           example: File updated successfully
+  #       400:
+  #         description: File not found
+  #         schema:
+  #           type: string
+  #           example: File not found
+  #       500:
+  #         description: File not updated
+  #         schema:
+  #           type: string
+  #           example: File not updated
+
+  # /searchByTag:
+  #   get:
+  #     tags: 
+  #       - Get
+  #     summary: Find files by tags
+  #     description: Returns multiple file
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: tag
+  #         in: query
+  #         description: tag of the files to return
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       200:
+  #         description: successful operation
+  #         schema:
+  #           type: string
+  #           example: File found
+  #       400:
+  #         description: No files with given tag
+  #         schema:
+  #           type: string
+  #           example: No files with given tag
+
+        
+
+
+  
